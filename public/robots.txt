@@ -1,0 +1,40 @@
+# Nutriwala Robots.txt
+# https://nutriwala.com
+
+User-agent: *
+Allow: /
+Allow: /shop
+Allow: /category/
+Allow: /product/
+Allow: /subscriptions
+Allow: /about
+Allow: /contact
+
+# Disallow private pages
+Disallow: /account
+Disallow: /checkout
+Disallow: /admin
+Disallow: /order-confirmation
+Disallow: /api/
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Sitemap location
+Sitemap: https://nutriwala.com/sitemap.xml

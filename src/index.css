@@ -1,0 +1,377 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&f[]=manrope@300,400,500,600,700,800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Nutriwala Premium Design System
+   Colors: Ink Black, Prussian Blue, Oxford Navy, School Bus Yellow, Gold
+   Typography: Satoshi (headings), Manrope (body)
+*/
+
+@layer base {
+  :root {
+    /* Premium Palette Definition */
+    /* Forest Green (Primary) - Trust, Health */
+    --forest-green: 165 40% 18%;
+    /* Gold (Accent) - Premium */
+    --gold-accent: 45 93% 47%;
+    /* Soft Cream (Surface) - Organic, Warm */
+    --soft-cream: 40 50% 98%;
+    /* Graphite (Text) - Clear, neutral */
+    --graphite: 0 0% 20%;
+
+    /* Semantic Mapping */
+    --background: 40 50% 98%;
+    /* Cream background */
+    --foreground: 0 0% 20%;
+    /* Graphite text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    --primary: 165 40% 18%;
+    /* Forest Green */
+    --primary-foreground: 40 50% 98%;
+
+    --secondary: 45 30% 90%;
+    /* Light Gold/Cream Mix */
+    --secondary-foreground: 165 40% 18%;
+
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 45 93% 47%;
+    /* Gold */
+    --accent-foreground: 165 40% 18%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 165 40% 18%;
+
+    --radius: 0.5rem;
+    /* More modern, slightly tighter radius */
+
+    /* Legacy support */
+    --yale-blue: 205 42% 27%;
+    --stormy-teal: 178 30% 34%;
+    --dust-grey: 0 0% 85%;
+    --pure-white: 0 0% 100%;
+  }
+
+  .dark {
+    /* Dark Mode Premium Mapping */
+    --background: 165 45% 10%;
+    /* Very dark green/black */
+    --foreground: 40 50% 98%;
+    /* Cream text */
+
+    --card: 165 40% 14%;
+    --card-foreground: 40 50% 98%;
+    --popover: 165 40% 14%;
+    --popover-foreground: 40 50% 98%;
+
+    --primary: 45 93% 47%;
+    /* Gold as primary in dark mode */
+    --primary-foreground: 165 40% 18%;
+
+    --secondary: 165 30% 25%;
+    --secondary-foreground: 40 50% 98%;
+
+    --muted: 165 30% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 45 93% 47%;
+    /* Gold */
+    --accent-foreground: 165 40% 18%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 165 30% 25%;
+    --input: 165 30% 25%;
+    --ring: 45 93% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+
+  /* Force canvas (shaders) to never capture clicks */
+  canvas {
+    pointer-events: none !important;
+  }
+}
+
+@layer utilities {
+
+  /* Glassmorphism using Yale Blue base */
+  .glass-card {
+    @apply bg-white/90 backdrop-blur-md border border-border/50 text-foreground shadow-sm;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Force inputs inside glass cards to be visible */
+  .glass-card input,
+  .glass-card textarea,
+  .glass-card select {
+    @apply bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-accent focus:ring-1 focus:ring-accent;
+  }
+
+  .glass-card label {
+    @apply text-foreground;
+  }
+
+  .glass-card-light {
+    @apply bg-white/15 backdrop-blur-xl border border-white/25;
+  }
+
+  .glass-card-accent {
+    @apply bg-accent/5 backdrop-blur-xl border border-accent/20;
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gold-gradient);
+  }
+
+  .bg-gradient-gold {
+    background-image: var(--gold-gradient);
+  }
+
+  .bg-gradient-navy {
+    background-image: var(--navy-gradient);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+
+  /* Premium hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-1;
+    box-shadow: var(--shadow-medium);
+  }
+
+  /* Gold shimmer animation */
+  @keyframes shimmer {
+    0% {
+      background-position: -200% center;
+    }
+
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .shimmer-gold {
+    background: linear-gradient(90deg,
+        hsl(50, 100%, 52%) 0%,
+        hsl(45, 100%, 60%) 50%,
+        hsl(50, 100%, 52%) 100%);
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Float animation for shader background */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Gradient button animations */
+  @keyframes grain {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    10% {
+      transform: translate(-1%, -1%);
+    }
+
+    20% {
+      transform: translate(1%, 1%);
+    }
+
+    30% {
+      transform: translate(-2%, 1%);
+    }
+
+    40% {
+      transform: translate(2%, -1%);
+    }
+
+    50% {
+      transform: translate(-1%, 2%);
+    }
+
+    60% {
+      transform: translate(1%, -2%);
+    }
+
+    70% {
+      transform: translate(-1%, 1%);
+    }
+
+    80% {
+      transform: translate(2%, 1%);
+    }
+
+    90% {
+      transform: translate(1%, -1%);
+    }
+  }
+
+  @keyframes bloomPulse {
+
+    0%,
+    100% {
+      transform: scale(0.8);
+      filter: blur(20px) brightness(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+      filter: blur(40px) brightness(1.3);
+    }
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-grain {
+    animation: grain 0.5s steps(10) infinite;
+  }
+
+  .animate-bloom-pulse {
+    animation: bloomPulse 2s ease-in-out infinite;
+  }
+
+  .animate-gradient-shift {
+    animation: gradientShift 3s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  /* Touch-friendly utilities */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Safe area padding for mobile */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Mobile-first container queries */
+  .container-responsive {
+    @apply w-full px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Responsive typography scaling */
+@layer base {
+  html {
+    font-size: 14px;
+  }
+
+  @screen sm {
+    html {
+      font-size: 15px;
+    }
+  }
+
+  @screen md {
+    html {
+      font-size: 16px;
+    }
+  }
+}
+
+/* Bottom navigation for mobile */
+.mobile-nav {
+  @apply fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-t border-border safe-bottom;
+}
+
+/* Improved focus states for accessibility */
+@layer base {
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+}
